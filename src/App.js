@@ -28,7 +28,7 @@ let dt = today.getDate();
 let m = today.getMonth() + 1;
 let y = today.getFullYear();
 
-const currentDate = new Date(y, m + 1, dt);
+const currentDate = new Date(Date.UTC(y, m + 1, dt));
 // console.log(d, dt, m, y);
 
 function App() {
@@ -45,6 +45,7 @@ function App() {
       if (newStep < 1) {
         return 1;
       }
+      return newStep;
     });
   }
   function handleNextStep() {
@@ -149,13 +150,13 @@ function App() {
   }
   function handleContent(day, month, year) {
     let content = "";
-    const countDay = new Date(year, month + 1, day);
+    const countDay = new Date(Date.UTC(year, month + 1, day));
     // Tính số ngày cách nhau
     const dateDiff = Math.abs(countDay - currentDate) / (1000 * 60 * 60 * 24);
-    // console.log(countDay);
-    // console.log(currentDate);
+    console.log(countDay);
+    console.log(currentDate);
     // console.log(countDay === currentDate);
-    // console.log(dateDiff);
+    console.log(dateDiff);
     // .toDateString : cắt hh/mm/ss
     // .getTime() để so sánh thời gian theo đơn vị mili giây
     if (countDay.getTime() === currentDate.getTime()) {
