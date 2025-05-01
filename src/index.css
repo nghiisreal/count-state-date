@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+body{
+  font-family: sans-serif;
+}
+.container{
+  display: block;
+  text-align: center;
+}
+.row{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+p{
+  font-size: 20px;
+}
+button{
+  font-size: 20px;
+  margin: 0px 10px;
+}
+.text{
+  font-weight: 600;
+}
