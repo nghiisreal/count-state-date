@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const messages = ["Today", "days from today", "days ago was"];
 const months = [
   "Jan",
@@ -28,7 +28,8 @@ let dt = today.getDate();
 let m = today.getMonth() + 1;
 let y = today.getFullYear();
 
-const currentDate = new Date(Date.UTC(y, m + 1, dt));
+const currentDate = new Date(Date.UTC(y, m - 1, dt));
+currentDate.setHours(0, 0, 0, 0); // Đặt giờ về 00:00:00 để so sánh chính xác
 // console.log(d, dt, m, y);
 
 function App() {
@@ -150,9 +151,12 @@ function App() {
   }
   function handleContent(day, month, year) {
     let content = "";
-    const countDay = new Date(Date.UTC(year, month + 1, day));
+    const countDay = new Date(Date.UTC(year, month - 1, day));
+    countDay.setHours(0, 0, 0, 0); // Đặt giờ về 00:00:00 để so sánh chính xác
     // Tính số ngày cách nhau
-    const dateDiff = Math.abs(countDay - currentDate) / (1000 * 60 * 60 * 24);
+    const dateDiff = Math.round(
+      Math.abs(countDay - currentDate) / (1000 * 60 * 60 * 24)
+    );
     console.log(countDay);
     console.log(currentDate);
     // console.log(countDay === currentDate);
@@ -195,7 +199,9 @@ function App() {
         {/* <p className="text">1 days from today is Monday Oct 14 2024</p>
       <p className="text">1 days ago was Monday Oct 14 2024</p> */}
         {count >= 1 || count <= -1 ? (
-          <p className="text">Today is Fri May 2 2025</p>
+          <p className="text">
+            Today is {days[d]} {months[m - 1]} {dt} {y}
+          </p>
         ) : (
           <p className="text" hidden>
             Today is Fri May 2 2025
