@@ -1,5 +1,5 @@
 import { useState } from "react";
-const messages = ["Today", "days from today", "days ago was"];
+const messages = ["Today is", "days from today is", "days ago was"];
 const months = [
   "Jan",
   "Feb",
@@ -209,7 +209,7 @@ function App() {
         )}
 
         <p className="text" style={{ color: "red", fontSize: 24 }}>
-          {handleContent(date, month, year)} is {days[day]} {months[month - 1]}{" "}
+          {handleContent(date, month, year)} {days[day]} {months[month - 1]}{" "}
           {date} {year}
         </p>
       </div>
